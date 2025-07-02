@@ -11,7 +11,7 @@ function App() {
   const [profile , setProfile] = useState(null);
     
     useEffect(() => {
-        axios.get('http://localhost:5000/api/profile')
+        axios.get('server.railway.internal/api/profile')
         .then(res => setProfile(res.data))
         .catch(err => console.error());
     },[]);
