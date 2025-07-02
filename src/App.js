@@ -1,24 +1,29 @@
-import logo from './logo.svg';
 import './App.css';
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import Navbar from './components/Navbar';
+import HeroSection from './components/HeroSection';
+import InfoSection from './components/InfoSection';
+import ContactSection from './components/ContactSection';
+
 
 function App() {
+  const [profile , setProfile] = useState(null);
+    
+    useEffect(() => {
+        axios.get('http://localhost:5000/api/profile')
+        .then(res => setProfile(res.data))
+        .catch(err => console.error());
+    },[]);
+    
+    if(!profile) return <p className="text-center">Loading...</p>
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <div>
+       <Navbar/>
+       <HeroSection profile={profile} />
+      <InfoSection profile={profile} />
+      <ContactSection profile={profile} />
+    </div> 
   );
 }
 
