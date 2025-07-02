@@ -10,7 +10,7 @@ function App() {
   const [profile, setProfile] = useState(null);
 
   useEffect(() => {
-    axios.get('https://server.railway.internal/api/profile') // ✅ pastikan ini full URL
+    axios.get('https://server-production-dcaf.up.railway.app//api/profile') // ✅ pastikan ini full URL
       .then(res => setProfile(res.data))
       .catch(err => console.error("Gagal ambil profile:", err));
   }, []);
