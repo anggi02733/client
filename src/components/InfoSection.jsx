@@ -1,6 +1,10 @@
 import React from "react";
 
-const InfoSection = ({profile}) => {
+const InfoSection = ({ profile }) => {
+  if (!profile || !profile.images) return null; // ⛑️ Cegah crash
+
+  const imageUrl = profile.images.find(image => image.id === 2)?.url;
+
   return (
     <section id="tentang" className="py-5 bg-light text-dark">
       <div className="container-fluid">
@@ -8,12 +12,12 @@ const InfoSection = ({profile}) => {
         <div className="row align-items-center">
           <div className="col-md-4 text-center mb-4 mb-md-0">
             <div className="d-flex gap-3 justify-content-center flex-wrap">
-                  <img
-                    src={profile.images.find(image => image.id === 2)?.url}
-                    alt="Foto Saya"
-                    className="img-fluid rounded-circle shadow"
-                    style={{ width: '200px', height: '200px', objectFit: 'cover' }}
-                />
+              <img
+                src={imageUrl}
+                alt="Foto Saya"
+                className="img-fluid rounded-circle shadow"
+                style={{ width: '200px', height: '200px', objectFit: 'cover' }}
+              />
             </div>
           </div>
 
